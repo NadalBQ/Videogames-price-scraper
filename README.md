@@ -1,3 +1,9 @@
 # Videogames-price-scraper
 
-<h1> HOLA </h1>
+## Web pages to look into:
+
+### InstantGaming
+### Steam
+### EpicGamesStore
+### CDProject
+### Eneba
