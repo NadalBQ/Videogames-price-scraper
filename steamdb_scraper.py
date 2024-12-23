@@ -38,11 +38,8 @@ driver.get(link)
 a = start()
 games = {}
 fails = []
-i = -1
-more = True
-while more:
-
-    i += 1
+for i in range(100):
+    
     #print(i, games)
     try:
         wait(100, "ms")
@@ -51,23 +48,22 @@ while more:
         wait(100, "ms")
         nextPage(driver)
         for name in page_games.keys():
-            if games[name] is not None:
-                more = False
             games[name] = page_games[name]
         
     except:
         fails.append(i)
-        
+        print(i)
+
 if fails:
     while len(fails) > 0:
         num = fails.pop()
         try:
             link = f"https://steamdb.info/instantsearch/?page={str(num)}&refinementList%5BappType%5D%5B0%5D=Game"
             driver.get(link)
-            wait(10, "ms")
+            wait(100, "ms")
             page_games = getPageGames(driver)
             
-            wait(10, "ms")
+            wait(100, "ms")
             nextPage(driver)
             for name in page_games.keys():
                 games[name] = page_games[name]
@@ -81,4 +77,3 @@ print("*"*100, "\n"*5)
 print(games)
 print(fails)
 print(b, "segundos")
-
