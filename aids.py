@@ -12,3 +12,10 @@ def wait(amount: int, unit="s"):
     else:
         time.sleep(amount/1000)
 
+
+def start():
+    return time.time()
+
+
+def finish(start):
+    return time.time() - start
