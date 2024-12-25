@@ -1,8 +1,17 @@
+from aids import *
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
-dic_videojuegos = {}   #Clave es el nombre y el valor es una tupla con (lista de tuplas con valor y entidad, puntuacion metacritic, duracion del título)
+# driver = webdriver.Edge()
+# driver = webdriver.Chrome()
 
-# example = {"Jurasic Park": ([(15, "Epic"), (16, "Steam")], 8.5, 40)}
 
-dic_videojuegos["jurasic Park"] = ([(15, "Epic"), (16, "Steam")], 8.5, 40)
+dic_videojuegos = {}
+
+# La clave del diccionario es el nombre del juego.
+# El valor es una lista con: la lista de precios por vendedor; valoración de Metacritic; Tiempo de juego que proporciona al usuario.
+
+
+dic_videojuegos = {"jurasic Park": [[(15, "Epic"), (16, "Steam")], 8.5, 40]}
 print(dic_videojuegos)
 
