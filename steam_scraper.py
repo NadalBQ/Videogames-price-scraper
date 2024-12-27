@@ -8,7 +8,7 @@ from selenium.webdriver import Chrome
 # Cambia el driver según el navegador que uses
 driver = webdriver.Edge()
 # driver = webdriver.Chrome()
-driver.implicitly_wait(10)
+driver.implicitly_wait(3)
 
 categories = ["singleplayer", "multiplayer_mmo", "multiplayer", "multiplayer_local_party", "multiplayer_lan", "multiplayer_coop", "multiplayer_online_competitive"]
 
@@ -53,9 +53,10 @@ a = start()
 games = {}
 
 i = 0
+last_len = 0
 link_template = "https://store.steampowered.com/category/{category}/?offset={offset}"
 for category in categories:
-
+    lastest_len = last_len
     last_len = len(games)
     while True:
 
@@ -74,8 +75,9 @@ for category in categories:
         print("gettin games!")
         games = getPageGames(driver, games)
         print(len(games))
-        if last_len == len(games):
+        if last_len == len(games) and lastest_len == last_len:
             break
+        lastest_len = last_len
         last_len = len(games)
 
 b = finish(a)
