@@ -1,4 +1,5 @@
 import time
+import json
 
 def wait(amount: int, unit="s"):
     """
@@ -19,3 +20,15 @@ def start():
 
 def finish(start):
     return time.time() - start
+
+
+def dump_into(what, where):
+    '''
+    what: The things you want to put into a json file.
+    where: the route name of the file eg. steamGamesSingleplayer.
+
+    This function returns nothing.
+    '''
+    
+    with open(f"{where}.json", "w+") as outfile:
+        json.dump(what, outfile)
