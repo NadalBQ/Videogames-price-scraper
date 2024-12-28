@@ -32,7 +32,6 @@ def steam_scrape():
     last_len = 0
     link_template = "https://store.steampowered.com/category/{category}/?offset={offset}"
     for category in categories:
-        lastest_len = last_len
         last_len = len(games)
         i = 0
         a = 0
@@ -66,12 +65,10 @@ def steam_scrape():
             else:
                 i += 1
 
-
-            if last_len == len(games) and lastest_len == last_len and a > 144:
+            if a > 144:
                 break
             elif last_len == len(games):
                 a += 1
-            lastest_len = last_len
             last_len = len(games)
 
     b = finish(t)

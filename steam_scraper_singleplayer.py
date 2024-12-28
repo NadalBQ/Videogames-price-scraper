@@ -1,5 +1,4 @@
 from steam_scraper import getPageGames
-import json
 from aids import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -55,12 +54,10 @@ for category in categories:
         else:
             i += 1
 
-
-        if last_len == len(games) and lastest_len == last_len and a > 144:
+        if a > 144:
             break
         elif last_len == len(games):
             a += 1
-        lastest_len = last_len
         last_len = len(games)
 
 b = finish(t)
