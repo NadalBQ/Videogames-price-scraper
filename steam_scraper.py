@@ -5,10 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver import Chrome
 
-# Cambia el driver según el navegador que uses
-driver = webdriver.Edge()
-# driver = webdriver.Chrome()
-driver.implicitly_wait(3)
+
 
 categories = ["singleplayer", "multiplayer_mmo", "multiplayer", "multiplayer_local_party", "multiplayer_lan", "multiplayer_coop", "multiplayer_online_competitive"]
 
@@ -25,6 +22,10 @@ def getPageGames(driver: Chrome, games={}):
     return games
 
 def steam_scrape():
+    # Cambia el driver según el navegador que uses
+    driver = webdriver.Edge()
+    # driver = webdriver.Chrome()
+    driver.implicitly_wait(3)
     t = start()
     games = {}
 
