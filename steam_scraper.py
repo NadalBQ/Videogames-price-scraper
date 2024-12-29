@@ -2,8 +2,7 @@
 from aids import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver import Chrome
+from selenium.webdriver import Chrome # Ayuda para el autocompletado de funciones en el IDE
 
 
 
@@ -47,7 +46,8 @@ def steam_multiple_scrape(categories=["singleplayer", "multiplayer_mmo", "multip
                             if (elem) {
                             elem.remove();
                             }
-                            """)
+                            """)# Baja por la página de forma "smooth" para cargar el contenido de los juegos
+                                # Elimina el panel grande de la parte superior de la pantalla (cubría el botón buscar más)
 
             print("gettin games!")
             games = getPageGames(driver, games)
