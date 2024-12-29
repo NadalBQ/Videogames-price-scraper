@@ -22,10 +22,11 @@ link_template = "https://store.steampowered.com/category/{category}/?offset={off
 for category in categories:
     lastest_len = last_len
     last_len = len(games)
-    i = 0
+    first = int(input("Desde qué i quieres empezar? "))
+    i = first
     a = 0
     twelve = True
-    while True:
+    while True and i < first + 60000:
 
         driver.get(link_template.format(category=category, offset=i))
         # i += 12
@@ -66,4 +67,4 @@ print("*" * 100, "\n" * 5)
 print(f"{b} segundos")
 
 
-dump_into(games, "steamGamesSingleplayer")
+dump_into(games, f"steamGamesSingleplayer{str(i)}")
