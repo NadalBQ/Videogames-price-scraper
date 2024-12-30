@@ -11,7 +11,7 @@ def getPageGames(driver: Chrome, games={}):
     for element in elements:
         try:
             name = element.find_element(by=By.CLASS_NAME, value='title').text
-            price = element.find_element(by=By.CLASS_NAME, value='price').text
+            price = element.find_element(by=By.CSS_SELECTOR, value='.price').text
             games[name] = (price, "Instant-Gaming")
         except Exception as e:
             print(f"Error al procesar un elemento: {e}")
@@ -27,7 +27,7 @@ def instant_gaming_scrape(search_engine="Edge"):
     t = start()
 
     games = {}
-    i = 0
+    i = 1
     while True:
         last_len = len(games)
         driver.get(link_template.format(page=i))
@@ -43,7 +43,7 @@ def instant_gaming_scrape(search_engine="Edge"):
     b = finish(t)
     print("*" * 100, "\n" * 5)
 
-    dump_into(games, "../jsons/instantGamingGames")
+    dump_into(games, "jsons/instantGamingGames")
     print(f"{b} segundos")
 
 instant_gaming_scrape()
