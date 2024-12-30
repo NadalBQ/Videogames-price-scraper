@@ -1,6 +1,7 @@
 import time
 import json
 from selenium import webdriver
+from selenium.webdriver import Chrome
 from typing import Literal
 
 
@@ -37,7 +38,7 @@ def dump_into(what, where):
         json.dump(what, outfile)
 
 
-def set_driver(search_engine: Literal["Chrome", "Safari", "Firefox", "Edge", "Explorer"]="Chrome"):
+def set_driver(search_engine: Literal["Chrome", "Safari", "Firefox", "Edge", "Explorer"]="Chrome") -> Chrome:
     '''
     search_engine must be Chrome, Edge or any search engine supported by selenium
     This function returns a webdriver
