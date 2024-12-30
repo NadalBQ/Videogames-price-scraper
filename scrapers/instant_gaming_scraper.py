@@ -11,6 +11,7 @@ def getPageGames(driver: Chrome, games={}):
         elements = driver.find_elements(by=By.CSS_SELECTOR, value='.item.force-badge')
     except:
         return games, 0
+    a = 0
     for element in elements:
         a = 0
         try:
