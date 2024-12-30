@@ -18,10 +18,10 @@ def getPageGames(driver: Chrome, games={}):
     return games
 
 
-def steam_multiple_scrape(categories=["singleplayer", "multiplayer_mmo", "multiplayer", "multiplayer_local_party", "multiplayer_lan", "multiplayer_coop", "multiplayer_online_competitive"]):
+def steam_multiple_scrape(categories=["singleplayer", "multiplayer_mmo", "multiplayer", "multiplayer_local_party", "multiplayer_lan", "multiplayer_coop", "multiplayer_online_competitive"], search_engine="Edge"):
     # Cambia el driver según el navegador que uses
-    driver = webdriver.Edge()
-    # driver = webdriver.Chrome()
+    driver = set_driver(search_engine)
+
     driver.implicitly_wait(3)
     t = start()
     games = {}
@@ -77,10 +77,10 @@ def steam_multiple_scrape(categories=["singleplayer", "multiplayer_mmo", "multip
     print(f"{b} segundos")
 
 
-def steam_category_scrape(category: str):
+def steam_category_scrape(category: str, search_engine: str):
     # Cambia el driver según el navegador que uses
-    driver = webdriver.Edge()
-    # driver = webdriver.Chrome()
+    driver = set_driver(search_engine)
+
     driver.implicitly_wait(3)
     t = start()
     games = {}

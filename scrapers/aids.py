@@ -1,5 +1,7 @@
 import time
 import json
+from selenium import webdriver
+
 
 def wait(amount: int, unit="s"):
     """
@@ -32,3 +34,24 @@ def dump_into(what, where):
     
     with open(f"{where}.json", "w+") as outfile:
         json.dump(what, outfile)
+
+
+def set_driver(search_engine="Chrome"):
+    '''
+    search_engine must be Chrome or Edge
+    this function returns a webdriver
+    '''
+    
+    # a = eval("webdriver." + search_engine + "()")   It's a vulnerability, user can insert any code, for example:
+    # return a                                        "Chrome();\nimport os\nos.remove('C:\\system32'); print"
+    if search_engine == "Chrome":
+        return webdriver.Chrome()
+    if search_engine == "Safari":
+        return webdriver.Safari()
+    if search_engine == "Firefox":
+        return webdriver.Firefox()
+    if search_engine == "Edge":
+        return webdriver.Edge()
+    if search_engine == "Explorer":
+        return webdriver.Ie()
+    
