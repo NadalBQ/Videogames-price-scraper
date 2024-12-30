@@ -38,8 +38,8 @@ def dump_into(what, where):
 
 def set_driver(search_engine="Chrome"):
     '''
-    search_engine must be Chrome or Edge
-    this function returns a webdriver
+    search_engine must be Chrome, Edge or any search engine supported by selenium
+    This function returns a webdriver
     '''
     
     # a = eval("webdriver." + search_engine + "()")   It's a vulnerability, user can insert any code, for example:
