@@ -73,7 +73,7 @@ def steam_multiple_scrape(categories=["singleplayer", "multiplayer_mmo", "multip
     b = finish(t)
     print("*" * 100, "\n" * 5)
 
-    dump_into(games, "steamGames")
+    dump_into(games, "../jsons/steamGames")
     print(f"{b} segundos")
 
 
@@ -141,6 +141,6 @@ def steam_category_scrape(category: str, search_engine: str):
     b = finish(t)
     print("*" * 100, "\n" * 5)
     
-    dump_into(games, f"steamGames{category}")
+    dump_into(games, f"../jsons/steamGames{category}")
     print(f"{b} segundos")
 
