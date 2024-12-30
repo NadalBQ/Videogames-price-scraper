@@ -1,6 +1,5 @@
 import scrapers
-import scrapers.steam
-import scrapers.steam.steam_scraper
+import scrapers.steam_scraper
 
 options = ["Update database", "Filter games", "Search"]
 search_engines = ["Chrome", "Safari", "Firefox", "Edge", "Explorer"]
@@ -21,7 +20,7 @@ if action == 1:
                                 1. {search_engines[0]}\n2. {search_engines[1]}\n3. {search_engines[2]}\n\
                                     4. {search_engines[3]}\n5. {search_engines[4]}\n")) - 1
     
-        scrapers.steam.steam_scraper.steam_multiple_scrape(search_engines[search_engine]) # scrape all games from all categories from steam
+        scrapers.steam_scraper.steam_multiple_scrape(search_engines[search_engine]) # scrape all games from all categories from steam
     
     except SyntaxError:
         print("The chosen action couldn't be interpreted, please insert a number between 1 and 5")
