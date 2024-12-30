@@ -1,6 +1,7 @@
 import time
 import json
 from selenium import webdriver
+from typing import Literal
 
 
 def wait(amount: int, unit="s"):
@@ -36,14 +37,25 @@ def dump_into(what, where):
         json.dump(what, outfile)
 
 
-def set_driver(search_engine="Chrome"):
+def set_driver(search_engine: Literal["Chrome", "Safari", "Firefox", "Edge", "Explorer"]="Chrome"):
     '''
     search_engine must be Chrome, Edge or any search engine supported by selenium
     This function returns a webdriver
     '''
-    
-    # a = eval("webdriver." + search_engine + "()")   It's a vulnerability, user can insert any code, for example:
-    # return a                                        "Chrome();\nimport os\nos.remove('C:\\system32'); print"
+    search_engines = ["Chrome", "Safari", "Firefox", "Edge", "Explorer"]
+    if search_engine in search_engines:
+        a = eval("webdriver." + search_engine + "()")
+        return a
+    return -1
+    '''
+    El código anterior no es vulnerable a inputs arbitrarios del usuario, 
+    puesto que solo llega a esta función una palabra elegida por el usuario 
+    a través de un selector saneado por el programa en el main.py, donde el 
+    usuario no podrá nunca insertar código interpretable pues dará lugar a un error.
+
+    Por tanto, el siguiente código es innecesario y el anterior facilita la 
+    lectura y comprensión del trabajo de la función.
+
     if search_engine == "Chrome":
         return webdriver.Chrome()
     if search_engine == "Safari":
@@ -54,4 +66,4 @@ def set_driver(search_engine="Chrome"):
         return webdriver.Edge()
     if search_engine == "Explorer":
         return webdriver.Ie()
-    
+    '''
