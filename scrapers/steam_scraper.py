@@ -1,7 +1,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Chrome # Ayuda para el autocompletado de funciones en el IDE
+from selenium.webdriver import Chrome
 from aids import *
 
 
