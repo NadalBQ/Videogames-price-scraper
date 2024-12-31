@@ -68,3 +68,15 @@ def set_driver(search_engine: Literal["Chrome", "Safari", "Firefox", "Edge", "Ex
     if search_engine == "Explorer":
         return webdriver.Ie()
     '''
+
+
+def scroll(driver: Chrome):
+    driver.execute_script("""scrollBy({top:1500, left:0, behavior: "smooth"});""")
+    wait(1)
+    driver.execute_script("""scrollBy({top:-1500, left:0, behavior: "smooth"});""")
+
+
+def massive_scroll(driver: Chrome):
+    driver.execute_script("""scrollBy({top:100000000000, left:0, behavior: "smooth"});""")
+
+    

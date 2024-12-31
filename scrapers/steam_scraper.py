@@ -39,15 +39,10 @@ def steam_multiple_scrape(categories=["singleplayer", "multiplayer_mmo", "multip
             driver.get(link_template.format(category=category, offset=i))
             # i += 12
             wait(100, "ms")
-            driver.execute_script("""scrollBy({top:10000000000000000, left:0, behavior: "smooth"});
-                            let elem = document
-                            .querySelector("._1cOoCFwafBlSkwllIMf3XM._1FPIVJTLsw1nvAN24BGGKg.SaleSectionTabs");
-                            
-                            if (elem) {
-                            elem.remove();
-                            }
-                            """)# Baja por la página de forma "smooth" para cargar el contenido de los juegos
-                                # Elimina el panel grande de la parte superior de la pantalla (cubría el botón buscar más)
+            massive_scroll(driver)
+            #driver.execute_script("""scrollBy({top:10000000000000000, left:0, behavior: "smooth"}); let elem = document.querySelector("._1cOoCFwafBlSkwllIMf3XM._1FPIVJTLsw1nvAN24BGGKg.SaleSectionTabs"); if (elem) {elem.remove();}""")
+            # Baja por la página de forma "smooth" para cargar el contenido de los juegos
+            # Elimina el panel grande de la parte superior de la pantalla (cubría el botón buscar más)
 
             print("gettin games!")
             games = getPageGames(driver, games)
