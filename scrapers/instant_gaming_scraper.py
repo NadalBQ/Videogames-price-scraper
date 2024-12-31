@@ -52,4 +52,3 @@ def instant_gaming_scrape(search_engine="Edge"):
     dump_into(games, "jsons/instantGamingGames")
     print(f"{b} segundos")
 
-instant_gaming_scrape()
