@@ -1,9 +1,14 @@
-import scrapers
-import scrapers.instant_gaming_scraper
-import scrapers.steam_scraper
+
+import scrapers.instant_gaming_scraper as instant_gaming_scraper
+import scrapers.steam_scraper as steam_scraper
+import scrapers.eneba_scraper as eneba_scraper
+import jsons.json_aids as json_aids
+
+
 
 options = ["Update database", "Filter games", "Search"]
 search_engines = ["Chrome", "Safari", "Firefox", "Edge", "Explorer"]
+platforms = ["Steam", "Epic-Games", "Eneba", "Instant-Gaming"]
 
 action = -1
 while action < 0:
@@ -21,9 +26,30 @@ if action == 1:
                                 1. {search_engines[0]}\n2. {search_engines[1]}\n3. {search_engines[2]}\n\
                                     4. {search_engines[3]}\n5. {search_engines[4]}\n")) - 1]
     
-        scrapers.steam_scraper.steam_multiple_scrape(search_engine) # scrape all games from all categories from steam
-        scrapers.instant_gaming_scraper.instant_gaming_scrape(search_engine)
+        steam_scraper.steam_multiple_scrape(search_engine) # scrape all games from all categories from steam
+        instant_gaming_scraper.instant_gaming_scrape(search_engine)
+        eneba_scraper.eneba_scrape()
+
+        json_aids.gen_json(sorted=True)
 
     except SyntaxError:
         print("The chosen action couldn't be interpreted, please insert a number between 1 and 5")
 
+
+if action == 2:
+    try:
+        platform = platforms[int(input(f"Which platform do you want to see the games of? (write the number):\n\
+                                1. {platforms[0]}\n2. {platforms[1]}\n3. {platforms[2]}\n\
+                                    4. {platforms[3]}\n")) - 1]
+
+        
+        games = json_aids.json_to_dict()
+        platform_games = {}
+        for k, v in games.items():
+            if platform in [elem[1] for elem in v]:
+                platform_games[k] = v
+
+
+
+    except SyntaxError:
+        print("The chosen action couldn't be interpreted, please insert a number between 1 and 4")

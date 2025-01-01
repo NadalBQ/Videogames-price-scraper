@@ -1,7 +1,7 @@
-from selenium import webdriver
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
-from aids import *
+from aids import wait, set_driver, scroll, start, finish, dump_into
 
 
 
