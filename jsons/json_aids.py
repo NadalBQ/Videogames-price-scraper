@@ -7,7 +7,7 @@ def _get_paths():
     import glob
     paths = []
     for filepath in glob.iglob('jsons/*.json'):
-        if filepath == 'jsons\games.json':
+        if filepath == 'jsons/games.json':
             pass
         else:
             paths.append(filepath)

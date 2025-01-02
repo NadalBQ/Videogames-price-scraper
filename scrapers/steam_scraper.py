@@ -1,7 +1,7 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
-from aids import wait, set_driver,massive_scroll, start, finish, dump_into
+from scrapers.aids import wait, set_driver,massive_scroll, start, finish, dump_into
 
 
 

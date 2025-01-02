@@ -1,7 +1,7 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
-from aids import wait, set_driver, scroll, start, finish, dump_into
+from scrapers.aids import wait, set_driver, scroll, start, finish, dump_into
 
 
 
@@ -72,4 +72,3 @@ def eneba_scrape(search_engine="Edge"):
     dump_into(games, "jsons/enebaGames")
     print(f"{b} segundos")
 
-eneba_scrape()

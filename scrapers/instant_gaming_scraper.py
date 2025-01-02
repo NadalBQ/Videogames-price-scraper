@@ -2,7 +2,7 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
-from aids import set_driver, start, finish, dump_into
+from scrapers.aids import set_driver, start, finish, dump_into
 
 
 
