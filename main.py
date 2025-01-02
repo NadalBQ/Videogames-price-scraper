@@ -13,7 +13,7 @@ platforms = ["Steam", "Epic-Games", "Eneba", "Instant-Gaming"]
 action = -1
 while action < 0:
     try:
-        action = int(input(f"Choose which action you want to execute \
+        action = int(input(f"Choose which action you want to execute. \
                            (write the number):\n1. {options[0]}\n2. \
                             {options[1]}\n3. {options[2]}\n"))
     except:
@@ -33,7 +33,7 @@ if action == 1:
         json_aids.gen_json(sorted=True)
 
     except SyntaxError:
-        print("The chosen action couldn't be interpreted, please insert a number between 1 and 5")
+        print("The chosen action couldn't be interpreted, please insert a number between 1 and 5.")
 
 
 if action == 2:
@@ -49,7 +49,20 @@ if action == 2:
             if platform in [elem[1] for elem in v]:
                 platform_games[k] = v
 
-
-
     except SyntaxError:
-        print("The chosen action couldn't be interpreted, please insert a number between 1 and 4")
+        print("The chosen action couldn't be interpreted, please insert a number between 1 and 4.")
+
+if action == 3:
+    try:
+        games = json_aids.json_to_dict()
+        gameName = input("What is the game you are looking for called?\n")
+        keys = []
+        for key in games.keys():
+            if gameName in key or key in gameName:
+                keys.append(key)
+        
+        for key in keys:
+            print(key, games[key])
+
+    except:
+        print("The name you wrote can't be interpreted, try with different spelling.")
