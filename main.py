@@ -25,7 +25,8 @@ options = ["Update database", "Filter games", "Search", "Exit"]
 search_engines = ["Chrome", "Safari", "Firefox", "Edge", "Explorer"]
 platforms = ["Steam", "Epic-Games", "Eneba", "Instant-Gaming"]
 action = main()
-while True:
+go = True
+while go:
     if action == 1:
         console_enter(5)
         try:
@@ -104,4 +105,4 @@ while True:
             print("The name you wrote can't be interpreted, try with different spelling.")
 
     if action == 4:
-        break
+        go = False
