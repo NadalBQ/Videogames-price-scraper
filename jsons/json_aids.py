@@ -3,11 +3,11 @@ from typing import Dict
 
 
 
-def _get_paths():
+def _get_paths() -> list:
     import glob
     paths = []
     for filepath in glob.iglob('jsons/*.json'):
-        if filepath == 'jsons/games.json':
+        if filepath == 'jsons/games.json' or filepath == 'jsons\\games.json':
             pass
         else:
             paths.append(filepath)
@@ -31,7 +31,7 @@ def _merge(paths=_get_paths()):
                     more_games:dict = json.loads(other.read())
                     for k,v in more_games.items():
                         if k in dic_games.keys():
-                            if v == dic_games[k]:
+                            if v in dic_games[k]:
                                 pass
                             else:
                                 dic_games[k].append(v)
@@ -57,7 +57,7 @@ def sort(dic_games:dict):
 def gen_json(sorted=False, dic_games:Dict[str, list]=_merge()):
     with open("jsons/games.json", "w+") as outfile:
         if sorted:
-            gen_json(sort(dic_games))
+            gen_json(False, sort(dic_games))
         else:
             json.dump(dic_games, outfile)
 
