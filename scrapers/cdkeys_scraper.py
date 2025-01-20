@@ -10,6 +10,9 @@ def cdkeys_scrape(search_engine = "Edge", pags = 537):
     games = {}    #Crear diccionario donde se guardan los juegos
 
     driver = set_driver(search_engine) #Generamos el driver
+    driver.implicitly_wait(1)
+
+    
     if driver != -1:
         for i in range(1,pags):
 
@@ -28,3 +31,4 @@ def cdkeys_scrape(search_engine = "Edge", pags = 537):
 
         dump_into(games, "jsons/cdkeysGames")    #Insertamos el diccionario games en el json de cdkeys
         print(f"{b} segundos")      #Mostramos el tiempo final
+    driver.close()    #Cerramos el driver
