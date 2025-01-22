@@ -39,7 +39,8 @@ def eneba_scrape(search_engine="Edge"):
     games = {}
     i = 1
     fails = 0
-    while True:
+
+    while not bool(len(games) == last_len and a == 0 and fails > 10):
         try:
             last_len = len(games)
             driver.get(link_template.format(page=i))
@@ -58,9 +59,6 @@ def eneba_scrape(search_engine="Edge"):
                 # robot_checker(driver)
             else:
                 i += 1
-
-            if len(games) == last_len and a == 0 and fails > 10:
-                break
         except:
             print("crash", i)
             break
