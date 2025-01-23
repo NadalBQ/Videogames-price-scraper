@@ -34,17 +34,13 @@ def instant_gaming_scrape(search_engine="Edge"):
 
     games = {}
     i = 1
-    while True:
+
+    while not bool(len(games) == last_len and a == 0):
         last_len = len(games)
         driver.get(link_template.format(page=i))
         games, a = getPageGames(driver, games)
         print("games:", len(games), "i:", i)
-        
-
-        if len(games) == last_len and a == 0:
-            break
-        else:
-            i += 1
+        i += 1
     
     b = finish(t)
     print("*" * 100, "\n" * 5)

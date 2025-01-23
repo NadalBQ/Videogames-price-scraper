@@ -2,6 +2,9 @@
 import scrapers.instant_gaming_scraper as instant_gaming_scraper
 import scrapers.steam_scraper as steam_scraper
 import scrapers.eneba_scraper as eneba_scraper
+import scrapers.cdkeys_scraper as cdkeys_scraper
+#import scrapers.epicgames_scraper as epicgames_scraper
+#import scrapers.metacritic_scraper as metacritic_scraper
 import jsons.json_aids as json_aids
 
 
@@ -38,18 +41,22 @@ while go:
                 only_merge = True
             if not only_merge:
                 search_engine = search_engines[int(input(f"Which search engine do you want to make use of to proceed with the scraping? (write the number):\n1. {search_engines[0]}\n2. {search_engines[1]}\n3. {search_engines[2]}\n4. {search_engines[3]}\n5. {search_engines[4]}\n")) - 1]
-            
-                steam_scraper.steam_multiple_scrape(search_engine) # scrape all games from all categories from steam
-                instant_gaming_scraper.instant_gaming_scrape(search_engine)
-                eneba_scraper.eneba_scrape()
-
+                
+                try:
+                    steam_scraper.steam_multiple_scrape(search_engine) # scrape all games from all categories from steam
+                    instant_gaming_scraper.instant_gaming_scrape(search_engine)
+                    eneba_scraper.eneba_scrape(search_engine)
+                    cdkeys_scraper.cdkeys_scrape(search_engine)
+                except Exception as E:
+                    print("There was a problem with one of the scrapers, make sure everything works before trying again (some json files may be damaged):\n", E)
+                    break
             json_aids.gen_json(sorted=True)
             console_enter(2)
             print("Database updated successfully!")
             action = main()
 
         except SyntaxError:
-            print("The chosen action couldn't be interpreted, please insert a number between 1 and 2.")
+            print("The chosen action couldn't be interpreted, please insert a number among those offered.")
 
 
     if action == 2:

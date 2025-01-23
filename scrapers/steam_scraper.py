@@ -31,10 +31,10 @@ def steam_multiple_scrape(search_engine="Edge", categories=["singleplayer", "mul
     last_len = 0
     for category in categories:
         last_len = len(games)
-        i = 0
-        a = 0
-        twelve = True
-        while True:
+        i = 0 # página a la que hacer scraping
+        a = 0 # número de fallos seguidos durante el scraping (un número elevado indicará que hemos visto todo el contenido y no encuentra más)
+        twelve = True #aumentar en 12 la i en la búsqueda de juegos
+        while a < 145:
 
             driver.get(link_template.format(category=category, offset=i))
             # i += 12
@@ -59,9 +59,8 @@ def steam_multiple_scrape(search_engine="Edge", categories=["singleplayer", "mul
             else:
                 i += 1
 
-            if a > 144:
-                break
-            elif last_len == len(games):
+            
+            if last_len == len(games):
                 a += 1
             last_len = len(games)
 
@@ -98,7 +97,7 @@ def steam_category_scrape(search_engine="Edge", category="singleplayer"):
     i = 0
     a = 0
     twelve = True
-    while True:
+    while a < 145:
 
         driver.get(link_template.format(category=category, offset=i))
         # i += 12
@@ -127,9 +126,8 @@ def steam_category_scrape(search_engine="Edge", category="singleplayer"):
         else:
             i += 1
 
-        if a > 144:
-            break
-        elif last_len == len(games):
+        
+        if last_len == len(games):
             a += 1
         last_len = len(games)
 
