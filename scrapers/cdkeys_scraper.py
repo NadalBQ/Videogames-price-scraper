@@ -13,22 +13,24 @@ def cdkeys_scrape(search_engine = "Edge", pags = 537):
     driver.implicitly_wait(1)
 
     
-    if driver != -1:
-        for i in range(1,pags):
 
-            driver.get(f'https://www.cdkeys.com/es_es/pc/juegos?p={i}')
+    for i in range(1,pags):
 
-            for juego in driver.find_elements(By.CLASS_NAME,'product-item '):
-                lista = juego.text.split('\n')
-                if len(lista)==4:
-                    games[lista[1]] = lista[2]
-                elif len(lista)==5:
-                    games[lista[2]] = lista[3]
-            print(f'Página hecha {i} de {pags-1} {i/(pags-1)*100:3}%')
+        driver.get(f'https://www.cdkeys.com/es_es/pc/juegos?p={i}')
 
-        b = finish(t)    #Calculamos el tiempo final
-        print("*" * 100, "\n" * 5)
+        for juego in driver.find_elements(By.CLASS_NAME,'product-item '):
+            lista = juego.text.split('\n')
+            if len(lista)==4:
+                games[lista[1]] = lista[2]
+            elif len(lista)==5:
+                games[lista[2]] = lista[3]
+        print(f'Página hecha {i} de {pags-1} {i/(pags-1)*100:3}%')
 
-        dump_into(games, "jsons/cdkeysGames")    #Insertamos el diccionario games en el json de cdkeys
-        print(f"{b} segundos")      #Mostramos el tiempo final
+    b = finish(t)    #Calculamos el tiempo final
+    print("*" * 100, "\n" * 5)
+
+    dump_into(games, "jsons/cdkeysGames")    #Insertamos el diccionario games en el json de cdkeys
+    print(f"{b} segundos")      #Mostramos el tiempo final
     driver.close()    #Cerramos el driver
+
+cdkeys_scrape()
