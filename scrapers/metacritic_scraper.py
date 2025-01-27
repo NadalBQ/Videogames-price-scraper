@@ -2,7 +2,23 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
 from scrapers.aids import wait, set_driver, scroll, start, finish, dump_into
 
-def metacritic_scrape(search_engine = "Edge", pags = 251):
+def getPageGames(driver: Chrome, games={}):
+    for juego in driver.find_elements(By.CLASS_NAME,'c-finderProductCard.c-finderProductCard-game'):
+            lista = juego.text.split('\n')
+            try:
+                titulo = lista[0].split('. ')[1]
+            except:
+                titulo = 'No cargado.'
+            fecha= lista[1]
+            Descripción = lista[2]
+            try:
+                Puntuación = lista[3]
+            except:
+                Puntuación = 0
+            games[titulo]= (fecha,Descripción,Puntuación)
+        print(f'Página hecha {i} de {pags-1} {i/(pags-1)*100:3}%')
+    
+def metacritic_scrape(search_engine = "Edge", pags = 1):
 
     t = start()   #Medir el momento en el que se epieza el scrapping
 
@@ -22,21 +38,7 @@ def metacritic_scrape(search_engine = "Edge", pags = 251):
     for i in range(1,int(pags)):
 
         driver.get(f'https://www.metacritic.com/browse/game/pc/all/all-time/metascore/?releaseYearMin=1958&releaseYearMax=2025&platform=pc&page={i}')
-
-        for juego in driver.find_elements(By.CLASS_NAME,'c-finderProductCard.c-finderProductCard-game'):
-            lista = juego.text.split('\n')
-            try:
-                titulo = lista[0].split('. ')[1]
-            except:
-                titulo = 'No cargado.'
-            fecha= lista[1]
-            Descripción = lista[2]
-            try:
-                Puntuación = lista[3]
-            except:
-                Puntuación = 0
-            games[titulo]= (fecha,Descripción,Puntuación)
-        print(f'Página hecha {i} de {pags-1} {i/(pags-1)*100:3}%')
+        getPageGames(driver, games)
 
     b = finish(t)    #Calculamos el tiempo final
     print("*" * 100, "\n" * 5)
