@@ -38,7 +38,7 @@ def metacritic_scrape(search_engine = "Edge", pags = 1):
     for i in range(1,int(pags)):
 
         driver.get(f'https://www.metacritic.com/browse/game/pc/all/all-time/metascore/?releaseYearMin=1958&releaseYearMax=2025&platform=pc&page={i}')
-        getPageGames(driver, games)
+        games = getPageGames(driver, games)
 
     b = finish(t)    #Calculamos el tiempo final
     print("*" * 100, "\n" * 5)
