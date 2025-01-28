@@ -47,6 +47,8 @@ while go:
                     instant_gaming_scraper.instant_gaming_scrape(search_engine)
                     eneba_scraper.eneba_scrape(search_engine)
                     cdkeys_scraper.cdkeys_scrape(search_engine)
+                    #epicgames_scraper.epicgames_scrape(search_engine)
+                    #metacritic_scraper.metacritic_scrape(search_engine)
                 except Exception as E:
                     print("There was a problem with one of the scrapers, make sure everything works before trying again (some json files may be damaged):\n", E)
                     break
@@ -120,3 +122,4 @@ while go:
 
     if action == 4:
         go = False
+    
