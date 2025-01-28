@@ -25,7 +25,6 @@ def main(action: int = -1):
 
 options = ["Update database", "Search", "Exit"]
 search_engines = ["Chrome", "Safari", "Firefox", "Edge", "Explorer"]
-platforms = ["Steam", "Epic-Games", "Eneba", "Instant-Gaming"]
 action = main()
 go = True
 while go:
