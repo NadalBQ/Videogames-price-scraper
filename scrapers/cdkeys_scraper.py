@@ -9,8 +9,8 @@ def getPageGames(driver: Chrome, games={}):
                 games[lista[1]] = lista[2]
             elif len(lista)==5:
                 games[lista[2]] = lista[3]    
-    print(f'Página hecha {i} de {pags-1} {i/(pags-1)*100:3}%')
     return games
+    
 
 def cdkeys_scrape(search_engine = "Edge", pags = 537):
 
@@ -28,9 +28,9 @@ def cdkeys_scrape(search_engine = "Edge", pags = 537):
         driver.get(f'https://www.cdkeys.com/es_es/pc/juegos?p={i}')
 
         games = getPageGames(driver, games)
-        
-    
 
+        print(f'Página hecha {i} de {pags-1} {i/(pags-1)*100:3}%')       
+    
     b = finish(t)    #Calculamos el tiempo final
     print("*" * 100, "\n" * 5)
 
