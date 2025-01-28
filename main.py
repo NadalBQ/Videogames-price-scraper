@@ -4,7 +4,7 @@ import scrapers.steam_scraper as steam_scraper
 import scrapers.eneba_scraper as eneba_scraper
 import scrapers.cdkeys_scraper as cdkeys_scraper
 #import scrapers.epicgames_scraper as epicgames_scraper
-#import scrapers.metacritic_scraper as metacritic_scraper
+import scrapers.metacritic_scraper as metacritic_scraper
 import jsons.json_aids as json_aids
 
 
@@ -48,7 +48,7 @@ while go:
                     eneba_scraper.eneba_scrape(search_engine)
                     cdkeys_scraper.cdkeys_scrape(search_engine)
                     #epicgames_scraper.epicgames_scrape(search_engine)
-                    #metacritic_scraper.metacritic_scrape(search_engine)
+                    metacritic_scraper.metacritic_scrape(search_engine)
                 except Exception as E:
                     print("There was a problem with one of the scrapers, make sure everything works before trying again (some json files may be damaged):\n", E)
                     break
