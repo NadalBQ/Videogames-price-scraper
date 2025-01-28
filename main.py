@@ -3,7 +3,6 @@ import scrapers.instant_gaming_scraper as instant_gaming_scraper
 import scrapers.steam_scraper as steam_scraper
 import scrapers.eneba_scraper as eneba_scraper
 import scrapers.cdkeys_scraper as cdkeys_scraper
-#import scrapers.epicgames_scraper as epicgames_scraper
 import scrapers.metacritic_scraper as metacritic_scraper
 import jsons.json_aids as json_aids
 
@@ -17,14 +16,14 @@ def main(action: int = -1):
     while action < 0:
         console_enter(5)
         try:
-            action = int(input(f"Choose which action you want to execute. (write the number):\n1. {options[0]}\n2. {options[1]}\n3. {options[2]}\n4. {options[3]}\n"))
+            action = int(input(f"Choose which action you want to execute. (write the number):\n1. {options[0]}\n2. {options[1]}\n3. {options[2]}\n"))
 
         except:
             print("The chosen action couldn't be interpreted, please insert a number between 1 and 3")
     return action
 
 
-options = ["Update database", "Filter games", "Search", "Exit"]
+options = ["Update database", "Search", "Exit"]
 search_engines = ["Chrome", "Safari", "Firefox", "Edge", "Explorer"]
 platforms = ["Steam", "Epic-Games", "Eneba", "Instant-Gaming"]
 action = main()
@@ -47,12 +46,12 @@ while go:
                     instant_gaming_scraper.instant_gaming_scrape(search_engine)
                     eneba_scraper.eneba_scrape(search_engine)
                     cdkeys_scraper.cdkeys_scrape(search_engine)
-                    #epicgames_scraper.epicgames_scrape(search_engine)
                     metacritic_scraper.metacritic_scrape(search_engine)
                 except Exception as E:
                     print("There was a problem with one of the scrapers, make sure everything works before trying again (some json files may be damaged):\n", E)
                     break
             json_aids.gen_json(sorted=True)
+            json_aids.add_values()
             console_enter(2)
             print("Database updated successfully!")
             action = main()
@@ -60,25 +59,7 @@ while go:
         except SyntaxError:
             print("The chosen action couldn't be interpreted, please insert a number among those offered.")
 
-
     if action == 2:
-        console_enter(5)
-        try:
-            platform = platforms[int(input(f"Which platform do you want to see the games of? (write the number):\n1. {platforms[0]}\n2. {platforms[1]}\n3. {platforms[2]}\n4. {platforms[3]}\n")) - 1]
-
-            games = json_aids.json_to_dict()
-            platform_games = {}
-            for k, v in games.items():
-                if platform in [elem[1] for elem in v]:
-                    platform_games[k] = v
-            
-            print("All games from", platform, "have been displayed.")
-            action = main()
-
-        except SyntaxError:
-            print("The chosen action couldn't be interpreted, please insert a number between 1 and 4.")
-
-    if action == 3:
         try:
             games = json_aids.json_to_dict()
             gameName = input("What is the game you are looking for called?\n")
@@ -120,6 +101,6 @@ while go:
         except:
             print("The name you wrote can't be interpreted, try with different spelling.")
 
-    if action == 4:
+    if action == 3:
         go = False
     

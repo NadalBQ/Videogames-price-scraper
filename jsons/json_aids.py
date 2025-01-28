@@ -7,7 +7,7 @@ def _get_paths() -> list:
     import glob
     paths = []
     for filepath in glob.iglob('jsons/*.json'):
-        if filepath == 'jsons/games.json' or filepath == 'jsons\\games.json':
+        if filepath == 'jsons/games.json' or filepath == 'jsons\\games.json' or filepath == 'jsons\\metacriticGames.json' or filepath == 'jsons/metacriticGames.json':
             pass
         else:
             paths.append(filepath)
@@ -62,4 +62,19 @@ def gen_json(sorted=False, dic_games:Dict[str, list]=_merge()):
             json.dump(dic_games, outfile)
 
 
-
+def add_values(destination:str = "jsons/games.json", source:str = "jsons/metacriticGames.json"):
+    games = json_to_dict(destination)
+    source_games = json_to_dict(source)
+    for k,v in games.items():
+        if k in source_games.keys():
+            if source_games[k] in v:
+                pass
+            else:
+                games[k].append(source_games[k])
+    for k,v in source_games.items():
+        if k in games:
+            pass
+        else:
+            games[k] = [source_games[k]]
+    with open(destination, "w+") as outfile:
+        json.dump(games, outfile)
