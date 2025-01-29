@@ -71,7 +71,7 @@ def _get_paths_demo() -> list:
     import glob
     paths = []
     for filepath in glob.iglob('*.json'):
-        if filepath == 'jsons/games.json' or filepath == 'jsons\\games.json' or filepath == 'jsons\\metacriticGames.json' or filepath == 'jsons/metacriticGames.json':
+        if filepath == '':
             pass
         else:
             paths.append(filepath)

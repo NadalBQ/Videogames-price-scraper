@@ -78,3 +78,27 @@ def add_values(destination:str = "jsons/games.json", source:str = "jsons/metacri
             games[k] = [source_games[k]]
     with open(destination, "w+") as outfile:
         json.dump(games, outfile)
+
+def fuse_jsons(name:str = "steam"):
+    import glob
+    paths = []
+    for filepath in glob.iglob(f'jsons/{name}*.json'):
+        if filepath == f'jsons/{name}Games.json' or filepath == f'jsons\\{name}Games.json':
+            pass
+        else:
+            paths.append(filepath)
+    
+    games = json_to_dict(paths[0])
+    for i in range(len(paths)):
+        if i == 0:
+            pass
+        else:
+            source_games = json_to_dict(paths[i])
+
+            for k,v in source_games.items():
+                if k in games.keys():
+                    pass
+                else:
+                    games[k] = [v]
+    with open(f'jsons/{name}Games.json', "w+") as outfile:
+        json.dump(games, outfile)
