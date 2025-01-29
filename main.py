@@ -32,25 +32,27 @@ while go:
         console_enter(5)
         try:
             only_merge = False
-            new_action = int(input("1-. Scrape all pages again\n2-. Re-merge all jsons\n"))
+            new_action = int(input("1-. Scrape all pages again\n2-. Re-merge all jsons\n3-. Delete all jsons but games.json\n"))
             if new_action == 1:
                 only_merge = False
             elif new_action == 2:
                 only_merge = True
-            if not only_merge:
-                search_engine = search_engines[int(input(f"Which search engine do you want to make use of to proceed with the scraping? (write the number):\n1. {search_engines[0]}\n2. {search_engines[1]}\n3. {search_engines[2]}\n4. {search_engines[3]}\n5. {search_engines[4]}\n")) - 1]
-                
-                try:
-                    steam_scraper.steam_multiple_scrape(search_engine) # scrape all games from all categories from steam
-                    instant_gaming_scraper.instant_gaming_scrape(search_engine)
-                    eneba_scraper.eneba_scrape(search_engine)
-                    cdkeys_scraper.cdkeys_scrape(search_engine)
-                    metacritic_scraper.metacritic_scrape(search_engine)
-                except Exception as E:
-                    print("There was a problem with one of the scrapers, make sure everything works before trying again (some json files may be damaged):\n", E)
-                    break
-            json_aids.gen_json(sorted=True)
-            json_aids.add_values()
+            elif new_action == 3:
+                json_aids.clean_but()
+            if new_action < 3:
+                if not only_merge:
+                    search_engine = search_engines[int(input(f"Which search engine do you want to make use of to proceed with the scraping? (write the number):\n1. {search_engines[0]}\n2. {search_engines[1]}\n3. {search_engines[2]}\n4. {search_engines[3]}\n5. {search_engines[4]}\n")) - 1]
+                    try:
+                        steam_scraper.steam_multiple_scrape(search_engine) # scrape all games from all categories from steam
+                        instant_gaming_scraper.instant_gaming_scrape(search_engine)
+                        eneba_scraper.eneba_scrape(search_engine)
+                        cdkeys_scraper.cdkeys_scrape(search_engine)
+                        metacritic_scraper.metacritic_scrape(search_engine)
+                    except Exception as E:
+                        print("There was a problem with one of the scrapers, make sure everything works before trying again (some json files may be damaged):\n", E)
+                        break
+                json_aids.gen_json(sorted=True)
+                json_aids.add_values()
             console_enter(2)
             print("Database updated successfully!")
             action = main()

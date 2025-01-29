@@ -102,3 +102,20 @@ def fuse_jsons(name:str = "steam"):
                     games[k] = [v]
     with open(f'jsons/{name}Games.json', "w+") as outfile:
         json.dump(games, outfile)
+
+
+def clean_but(names:list = ["games"]):
+    '''Deletes all json files except the ones named in the given list'''
+    import glob
+    import os
+
+    directory = "jsons"
+
+    for file in glob.glob(f"{directory}/*.json"):
+        for name in names:
+            if not file.endswith(f"{name}.json"):
+                try:
+                    os.remove(file)
+                    print(f"Deleted: {file}")
+                except Exception as e:
+                    print(f"Error deleting {file}: {e}")
