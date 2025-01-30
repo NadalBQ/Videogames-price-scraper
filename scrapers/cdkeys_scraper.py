@@ -6,9 +6,9 @@ def getPageGames(driver: Chrome, games={}):
     for juego in driver.find_elements(By.CLASS_NAME,'product-item '):
             lista = juego.text.split('\n')
             if len(lista)==4:
-                games[lista[1]] = lista[2]
+                games[lista[1]] = [lista[2],'cdkeys']  
             elif len(lista)==5:
-                games[lista[2]] = lista[3]    
+                games[lista[2]] = [lista[3],'cdkeys']    
     return games
     
 
